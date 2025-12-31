@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Jiya</title>
+
+<style>
+body{
+    margin:0;
+    font-family:Arial,sans-serif;
+    height:100vh;
+    overflow:hidden;
+    background:linear-gradient(135deg,#e1bee7,#b2dfdb,#ffe0b2);
+}
+
+/* COMMON CLOSE BUTTON */
+.close-btn{
+    position:absolute;
+    top:12px;
+    right:15px;
+    font-size:26px;
+    font-weight:bold;
+    color:#ff4081;
+    cursor:pointer;
+    z-index:100;
+}
+.close-btn:hover{color:#d81b60}
+
+/* LOGIN */
+#loginPage{
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+.login-box{
+    background:white;
+    padding:30px;
+    border-radius:15px;
+    text-align:center;
+    box-shadow:0 10px 30px rgba(0,0,0,.2);
+}
+.login-box h1{color:#ff4081}
+.login-box input{
+    padding:12px;
+    width:90%;
+    border:2px solid #ff4081;
+    border-radius:8px;
+    text-align:center;
+}
+.login-box button{
+    margin-top:15px;
+    padding:12px 25px;
+    border:none;
+    border-radius:25px;
+    background:linear-gradient(45deg,#ff4081,#ff80ab);
+    color:white;
+    font-size:1.1em;
+    cursor:pointer;
+}
+
+/* HEART ANIMATION */
+#animationScreen{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:radial-gradient(circle,#ff80ab,#ff4081);
+    z-index:10;
+    overflow:hidden;
+}
+.heart{
+    position:absolute;
+    font-size:30px;
+    animation:floatUp 3s linear infinite;
+}
+@keyframes floatUp{
+    0%{transform:translateY(100vh) scale(0);opacity:0}
+    50%{opacity:1}
+    100%{transform:translateY(-10vh) scale(1.5);opacity:0}
+}
+
+/* POPUP */
+#popup{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.6);
+    z-index:20;
+    justify-content:center;
+    align-items:center;
+}
+.popup-content{
+    position:relative;
+    background:white;
+    padding:25px;
+    border-radius:15px;
+    width:90%;
+    max-width:500px;
+    text-align:center;
+    animation:popIn .6s ease;
+    max-height:90vh;
+    overflow-y:auto;
+}
+@keyframes popIn{
+    from{transform:scale(.7);opacity:0}
+    to{transform:scale(1);opacity:1}
+}
+.popup-content img{
+    width:100%;
+    max-width:250px;
+    border-radius:12px;
+    margin:15px 0;
+}
+.date{color:#d81b60;font-weight:bold}
+.compliment{color:#388e3c;font-size:1.2em}
+.note{
+    background:#fff8e1;
+    border:2px solid #ffb74d;
+    border-radius:10px;
+    padding:15px;
+    margin-top:15px;
+    text-align:left;
+    font-family:"Courier New",monospace;
+}
+button{
+    margin-top:15px;
+    padding:10px 20px;
+    border:none;
+    border-radius:20px;
+    background:#ff4081;
+    color:white;
+    font-size:1em;
+    cursor:pointer;
+}
+
+/* THIRD SCREEN */
+#thirdScreen{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:linear-gradient(135deg,#b39ddb,#80cbc4);
+    z-index:30;
+    justify-content:center;
+    align-items:center;
+    overflow:hidden;
+}
+.star{
+    position:absolute;
+    font-size:20px;
+    animation:twinkle 2s infinite;
+}
+@keyframes twinkle{
+    0%,100%{opacity:0}
+    50%{opacity:1}
+}
+.third-note{
+    position:relative;
+    background:white;
+    padding:30px;
+    border-radius:15px;
+    width:90%;
+    max-width:500px;
+    text-align:center;
+    animation:slideUp 1s ease;
+}
+@keyframes slideUp{
+    from{transform:translateY(60px);opacity:0}
+    to{transform:translateY(0);opacity:1}
+}
+</style>
+</head>
+
+<body>
+
+<!-- LOGIN -->
+<div id="loginPage">
+    <div class="login-box">
+        <h1>Login to Continue 🎉</h1>
+        <input type="text" id="userName" placeholder="Enter your name">
+        <br>
+        <button onclick="login()">Login</button>
+    </div>
+</div>
+
+<!-- HEART ANIMATION -->
+<div id="animationScreen"></div>
+
+<!-- POPUP -->
+<div id="popup">
+    <div class="popup-content">
+        <span class="close-btn" onclick="backToLogin()">✖</span>
+
+        <h1>Happy Birthday, Jiya 🎂</h1>
+        <p class="date">Celebrating on March 1st</p>
+
+        <img src="https://i.imgur.com/rYq1kjt.jpg">
+
+        <!-- FULL PERSONALIZED WISH -->
+        <p id="wishText"></p>
+
+        <!-- RANDOM COMPLIMENT -->
+        <p class="compliment" id="complimentText"></p>
+
+        <!-- GIFT TEXT -->
+        <p>🎁 Your virtual gift: A lifetime of smiles, confidence, and beautiful adventures 🌟</p>
+
+        <!-- MAIN NOTE -->
+        <div class="note">
+            <p><b>Dear Jiya,</b></p>
+            <p>
+                Happy Birthday! Today is a reminder of how special you truly are.
+                Your presence brings warmth, your smile brings comfort,
+                and your kindness leaves a lasting impact on everyone around you.
+            </p>
+            <p>
+                As you step into a new year of your life, may you find confidence
+                in your dreams, strength in challenges, and happiness in the little moments.
+            </p>
+            <p>
+                Never forget how appreciated and valued you are.
+            </p>
+            <p>With heartfelt wishes 💐</p>
+        </div>
+
+        <button onclick="openThirdScreen()">One More Surprise ➜</button>
+    </div>
+</div>
+
+<!-- THIRD SCREEN -->
+<div id="thirdScreen">
+    <div class="third-note">
+        <span class="close-btn" onclick="backToPopup()">✖</span>
+
+        <h2>🌟 A Thought Just for You 🌟</h2>
+        <p>
+            Dear Jiya,<br><br>
+            Birthdays are not just about growing older,
+            but about recognizing how far you’ve come
+            and how much potential still lies ahead.
+        </p>
+        <p>
+            May your journey always be guided by hope,
+            surrounded by positivity, and filled with moments
+            that make you proud of who you are becoming.
+        </p>
+        <p>
+            Keep believing in yourself —
+            because you are capable of wonderful things.
+        </p>
+        <p><b>Wishing you peace, growth, and happiness 🌼</b></p>
+    </div>
+</div>
+
+<script>
+function login(){
+    const name=document.getElementById("userName").value.trim();
+    if(!name){alert("Please enter your name");return;}
+
+    document.getElementById("loginPage").style.display="none";
+    const anim=document.getElementById("animationScreen");
+    anim.style.display="block";
+
+    for(let i=0;i<40;i++){
+        const heart=document.createElement("div");
+        heart.className="heart";
+        heart.innerHTML="💖";
+        heart.style.left=Math.random()*100+"vw";
+        heart.style.animationDelay=Math.random()*3+"s";
+        anim.appendChild(heart);
+    }
+
+    setTimeout(()=>{
+        anim.style.display="none";
+        document.getElementById("popup").style.display="flex";
+
+        document.getElementById("wishText").innerHTML=
+        `Dear ${name},<br><br>
+        On this special day, March 1st, I want you to know how much you matter.
+        Your smile has the power to brighten moments, your kindness inspires,
+        and your presence makes everything feel a little better.
+        May this year bring growth, happiness, and memories you’ll always cherish. ❤️`;
+
+        const compliments=[
+            "You're truly one of a kind!",
+            "Your smile changes everything!",
+            "You bring positivity wherever you go!",
+            "You are appreciated more than you know!",
+            "You make the world a better place just by being you!"
+        ];
+        document.getElementById("complimentText").innerText=
+        compliments[Math.floor(Math.random()*compliments.length)];
+    },3000);
+}
+
+function openThirdScreen(){
+    document.getElementById("popup").style.display="none";
+    const screen=document.getElementById("thirdScreen");
+    screen.style.display="flex";
+
+    for(let i=0;i<30;i++){
+        const star=document.createElement("div");
+        star.className="star";
+        star.innerHTML="✨";
+        star.style.left=Math.random()*100+"vw";
+        star.style.top=Math.random()*100+"vh";
+        star.style.animationDelay=Math.random()*2+"s";
+        screen.appendChild(star);
+    }
+}
+
+function backToLogin(){
+    document.getElementById("popup").style.display="none";
+    document.getElementById("loginPage").style.display="flex";
+}
+
+function backToPopup(){
+    document.getElementById("thirdScreen").style.display="none";
+    document.getElementById("popup").style.display="flex";
+}
+</script>
+
+</body>
+</html>
