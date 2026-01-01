@@ -149,12 +149,6 @@ button{
     font-size:1em;
     cursor:pointer;
 }
-.audio-controls {
-    margin-top: 15px;
-}
-.audio-controls input {
-    margin: 0 10px;
-}
 
 /* THIRD SCREEN */
 #thirdScreen{
@@ -194,12 +188,6 @@ button{
 </head>
 
 <body>
-
-<!-- HIDDEN AUDIO ELEMENT -->
-<audio id="birthdaySong" preload="auto">
-    <source src="https://www.soundjay.com/misc/sounds/happy-birthday-song.mp3" type="audio/mpeg">
-    <!-- Replace with your custom "Happy Birthday to You Jiya" URL if desired -->
-</audio>
 
 <!-- LOGIN -->
 <div id="loginPage">
@@ -249,13 +237,6 @@ button{
                 Never forget how appreciated and valued you are.
             </p>
             <p>With heartfelt wishes 💐</p>
-        </div>
-
-        <!-- AUDIO CONTROLS -->
-        <div class="audio-controls">
-            <button onclick="playSong()">Play Birthday Song 🎶</button>
-            <button onclick="pauseSong()">Pause</button>
-            <input type="range" id="volumeSlider" min="0" max="1" step="0.1" value="0.5" onchange="setVolume()">
         </div>
 
         <button onclick="openThirdScreen()">One More Surprise ➜</button>
@@ -326,23 +307,6 @@ function login(){
         document.getElementById("complimentText").innerText=
         compliments[Math.floor(Math.random()*compliments.length)];
     },3000);
-}
-
-function playSong(){
-    const audio = document.getElementById("birthdaySong");
-    audio.volume = parseFloat(document.getElementById("volumeSlider").value);
-    audio.currentTime = 0;
-    audio.play();
-}
-
-function pauseSong(){
-    const audio = document.getElementById("birthdaySong");
-    audio.pause();
-}
-
-function setVolume(){
-    const audio = document.getElementById("birthdaySong");
-    audio.volume = parseFloat(document.getElementById("volumeSlider").value);
 }
 
 function openThirdScreen(){
